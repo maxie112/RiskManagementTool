@@ -1,0 +1,428 @@
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/data.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<!-- Flag sprites service provided by Martijn Lafeber, https://github.com/lafeber/world-flags-sprite/blob/master/LICENSE -->
+<link rel="stylesheet" type="text/css" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css"/>
+
+{% extends "layouts/default.html" %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="panel-header bg-primary-gradient">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">Risk Management - Global</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="container1"></div>
+    <div class="row row-card-no-pd">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header"  style="max-height: 3px">
+                    <div class="card-head-row card-tools-still-right" style="max-height: 3px">
+                        <h4 class="card-title">Risk / Impact</h4>
+                        <div class="card-tools"  style="max-height: 3px">
+                            <button class="btn btn-icon btn-link btn-primary btn-xs"><span
+                                    class="fa fa-angle-down"></span></button>
+                            <button class="btn btn-icon btn-link btn-primary btn-xs btn-refresh-card"><span
+                                    class="fa fa-sync-alt"></span></button>
+                            <button class="btn btn-icon btn-link btn-primary btn-xs"><span class="fa fa-times"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body" align="top">
+                       <div class="mapcontainer" style="min-height: 3px">
+                                <div id="map-example" class="vmap"></div>
+                                <figure class="highcharts-figure">
+                                    <div id="container"></div>
+                                </figure>
+                            </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="table-responsive table-hover table-sales">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="chart-container" style="min-height: 3px">
+                <div class="col-md-6">
+
+                        </div>
+              </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+<div class="row">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-head-row">
+                <div class="card-title">Country Risks Index</div>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-info btn-border btn-round btn-sm mr-2">
+                    <span class="btn-label">
+                      <i class="fa fa-pencil"></i>
+                    </span>
+                    Export
+                  </a>
+                  <a href="#" class="btn btn-info btn-border btn-round btn-sm">
+                    <span class="btn-label">
+                      <i class="fa fa-print"></i>
+                    </span>
+                    Print
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="flag">
+                                                <img src="/static/assets/img/flags/id.png" alt="indonesia">
+                                            </div>
+                                        </td>
+                                        <td>Indonesia</td>
+                                        <td class="text-right">
+                                            2.32
+                                        </td>
+                                        <td class="text-right">
+                                            42.18%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="flag">
+                                                <img src="/static/assets/img/flags/us.png" alt="united states">
+                                            </div>
+                                        </td>
+                                        <td>USA</td>
+                                        <td class="text-right">
+                                            2.40
+                                        </td>
+                                        <td class="text-right">
+                                            4.36%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="flag">
+                                                <img src="/static/assets/img/flags/au.png" alt="australia">
+                                            </div>
+                                        </td>
+                                        <td>Australia</td>
+                                        <td class="text-right">
+                                            1.11
+                                        </td>
+                                        <td class="text-right">
+                                            2.16%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="flag">
+                                                <img src="/static/assets/img/flags/ru.png" alt="russia">
+                                            </div>
+                                        </td>
+                                        <td>Russia</td>
+                                        <td class="text-right">
+                                            1.08
+                                        </td>
+                                        <td class="text-right">
+                                            19.65%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="flag">
+                                                <img src="/static/assets/img/flags/cn.png" alt="china">
+                                            </div>
+                                        </td>
+                                        <td>China</td>
+                                        <td class="text-right">
+                                            1.10
+                                        </td>
+                                        <td class="text-right">
+                                            20%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="flag">
+                                                <img src="/static/assets/img/flags/br.png" alt="brazil">
+                                            </div>
+                                        </td>
+                                        <td>Brasil</td>
+                                        <td class="text-right">
+                                            6.40
+                                        </td>
+                                        <td class="text-right">
+                                            11.63%
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+              <div id="myChartLegend"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-primary">
+            <div class="card-header">
+              <div class="card-title">World Risks Quarterly</div>
+              <div class="card-category">Q1</div>
+            </div>
+            <div class="card-body pb-0">
+              <div class="mb-4 mt-2">
+                <h1>6.78</h1>
+              </div>
+              <div class="pull-in">
+                <canvas id="dailySalesChart"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body pb-0">
+              <div class="h1 fw-bold float-right text-warning">-7%</div>
+              <h2 class="mb-2">6.99</h2>
+              <p class="text-muted">Heineken Risk Index</p>
+              <div class="pull-in sparkline-fix">
+                <div id="lineChart"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script>
+
+        Highcharts.chart('container', {
+
+            chart: {
+                type: 'bubble',
+                plotBorderWidth: 1,
+                zoomType: 'xy'
+            },
+
+            legend: {
+                enabled: false
+            },
+
+            title: {
+                text: 'Risk Responses Per Country'
+            },
+
+
+
+            accessibility: {
+                point: {
+                    valueDescriptionFormat: '{index}. {point.name}, Total Risk: {point.x}g, Previous Risk: {point.y}g, Target: {point.z}%.'
+                }
+            },
+
+            xAxis: {
+                gridLineWidth: 1,
+                title: {
+                    text: 'Risk Index'
+                },
+                labels: {
+                    format: '{value}'
+                },
+                plotLines: [{
+                    color: 'black',
+                    dashStyle: 'dot',
+                    width: 2,
+                    value: 6.5,
+                    label: {
+                        rotation: 0,
+                        y: 1.5,
+                        style: {
+                            fontStyle: 'italic'
+                        },
+                        text: 'Acceptable Risk Index'
+                    },
+                    zIndex: 3
+                }],
+                accessibility: {
+                    rangeDescription: ''
+                }
+            },
+
+            yAxis: {
+                startOnTick: false,
+                endOnTick: false,
+                title: {
+                    text: 'Impact'
+                },
+                labels: {
+                    format: '{value}'
+                },
+                maxPadding: 0.2,
+                plotLines: [{
+                    color: 'black',
+                    dashStyle: 'dot',
+                    width: 2,
+                    value: 5.0,
+                    label: {
+                        align: 'right',
+                        style: {
+                            fontStyle: 'italic'
+                        },
+                        text: 'Acceptable Impact Level',
+                        x: -10
+                    },
+                    zIndex: 3
+                }],
+                accessibility: {
+                    rangeDescription: ''
+                }
+            },
+
+            tooltip: {
+                useHTML: true,
+                headerFormat: '<table>',
+                pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
+                    '<tr><th>Risk Index:</th><td>{point.x}</td></tr>' +
+                    '<tr><th>Impact Score:</th><td>{point.y}</td></tr>' +
+                    '<tr><th>Target:</th><td>{point.z}</td></tr>',
+                footerFormat: '</table>',
+                followPointer: true
+            },
+
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    }
+                }
+            },
+
+            series: [{
+                data: [
+                    {x: 9.5, y: 9.5, z: 1.38, name: 'BE', country: 'Belgium'},
+                    {x: 8.65, y: 10.29, z: 1.47, name: 'DE', country: 'Germany'},
+                    {x: 6.08, y: 9.15, z: 1.58, name: 'FI', country: 'Finland'},
+                    {x: 4.04, y: 10.25, z: 1.2, name: 'NL', country: 'Netherlands'},
+                    {x: 8.03, y: 8.61, z: 1.18, name: 'SE', country: 'Sweden'},
+                    {x: 3.84, y: 7.01, z: 1.66, name: 'ES', country: 'Spain'},
+                    {x: 5.42, y: 6.85, z: 1.45, name: 'FR', country: 'France'},
+                    {x: 4.35, y: 8.31, z: 1.0, name: 'NO', country: 'Norway'},
+                    {x: 7.1, y: 9.32, z: 2.47, name: 'UK', country: 'United Kingdom'},
+                    {x: 2.92, y: 5.76, z: 1.04, name: 'IT', country: 'Italy'},
+                    {x: 4.86, y: 2.0, z: 1.6, name: 'RU', country: 'Russia'},
+                    {x: 5.55, y: 12.64, z: 3.53, name: 'US', country: 'United States'},
+                    {x: 2.54, y: 5.08, z: 2.85, name: 'HU', country: 'Hungary'},
+                    {x: 4.34, y: 5.18, z: 1.54, name: 'PT', country: 'Portugal'},
+                    {x: 6.4, y: 8.29, z: 3.13, name: 'NZ', country: 'New Zealand'}
+                ]
+            }]
+
+        });
+
+
+        Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json', function (data) {
+
+            // Prevent logarithmic errors in color calulcation
+            data.forEach(function (p) {
+                p.value = (p.value < 1 ? 1 : p.value);
+            });
+
+            // Initiate the chart
+            Highcharts.mapChart('container1', {
+
+                chart: {
+                    map: 'custom/world'
+                },
+
+                title: {
+                    text: 'Global'
+                },
+
+                legend: {
+                    title: {
+                        text: 'Risk Index Level',
+                        style: {
+                            color: ( // theme
+                                Highcharts.defaultOptions &&
+                                Highcharts.defaultOptions.legend &&
+                                Highcharts.defaultOptions.legend.title &&
+                                Highcharts.defaultOptions.legend.title.style &&
+                                Highcharts.defaultOptions.legend.title.style.color
+                            ) || 'black'
+                        }
+                    }
+                },
+
+                mapNavigation: {
+                    enabled: true,
+                    buttonOptions: {
+                        verticalAlign: 'bottom'
+                    }
+                },
+
+                tooltip: {
+                    backgroundColor: 'none',
+                    borderWidth: 0,
+                    shadow: false,
+                    useHTML: true,
+                    padding: 0,
+                    pointFormat: '<span class="f32"><span class="flag {point.properties.hc-key}">' +
+                        '</span></span> {point.name}<br>' +
+                        '<span style="font-size:30px">{point.value} RI</span>',
+                    positioner: function () {
+                        return {x: 0, y: 250};
+                    }
+                },
+
+                colorAxis: {
+                    min: 1,
+                    max: 7,
+                    type: 'logarithmic'
+                },
+
+                series: [{
+                    data: data,
+                    joinBy: ['iso-a3', 'code3'],
+                    name: 'Country Risk Index',
+                    states: {
+                        hover: {
+                            color: '#a4edba'
+                        }
+                    }
+                }]
+            });
+        });
+    </script>
+
+{% endblock content %}

@@ -1,0 +1,26 @@
+[
+  {
+    "model": "app.Organization",
+    "pk": 1,
+    "fields": {
+      "short_description": "Global",
+      "long_description": "Heineken Global"
+    }
+  },
+    {
+    "model": "app.Organization",
+    "pk": 2,
+    "fields": {
+      "short_description": "Region",
+      "long_description": "Heineken Region"
+    }
+  },
+    {
+    "model": "app.Organization",
+    "pk": 3,
+    "fields": {
+      "short_description": "OPCO",
+      "long_description": "Heineken OPCO"
+    }
+  }
+]

@@ -1,0 +1,104 @@
+
+
+{% extends "layouts/default.html" %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="panel-header bg-primary-gradient" data-background-color="white">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">Risk & Response</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row row-card-no-pd">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-head-row card-tools-still-right">
+                        <h4 class="card-title">Create new Risk Response</h4>
+                        <div class="card-tools">
+                            <div class="ml-md-auto py-2 py-md-0">
+
+                            </div>
+                            <button class="btn btn-icon btn-link btn-primary btn-xs"><span
+                                    class="fa fa-angle-down"></span></button>
+                            <button class="btn btn-icon btn-link btn-primary btn-xs btn-refresh-card"><span
+                                    class="fa fa-sync-alt"></span></button>
+                            <button class="btn btn-icon btn-link btn-primary btn-xs"><span class="fa fa-times"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="card-category">
+                        Identify a Risk and map Response</p>
+                </div>
+
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="table-responsive table-hover table-sales">
+                                <table class="table">
+
+                                    <tr>
+                                          <td>
+                                            <label><b>Testing Procedures OPCO</b></label>
+                                            <form  action='{% url 'riskform' %}' method="post">
+                                                {% csrf_token %}
+                                             {{ riskform }}
+                                        </td>
+                                        <td>
+                                            <label><b>Response</b></label>
+                                            {{ riskaction}}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="table-responsive table-hover table-sales">
+
+                             <table class="table">
+
+                                    <tr>
+                                        <td>
+                                            <label><b>Monioring</b></label>
+                                                {{ heimonitoring }}
+
+
+                                            </td>
+
+
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+                                 <div>
+                                                    <input type="submit" value="Submit">
+                                                </div>
+                                                      </form>
+                            </div>
+                        </div>
+
+                    </div>
+                     <div class="ml-md-auto py-2 py-md-0">
+            <a href='{% url 'riskresponse' %}' class="btn btn-white btn-border btn-round mr-2">Add Risk Response</a>
+          </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+

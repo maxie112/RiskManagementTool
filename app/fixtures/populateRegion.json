@@ -1,0 +1,29 @@
+[
+  {
+    "model": "app.Region",
+    "pk": 1,
+    "fields": {
+
+      "region_short": "AMEE",
+      "region_long": "Africa, Middle East, Eastern Europe"
+    }
+  },
+   {
+    "model": "app.Region",
+    "pk": 2,
+    "fields": {
+
+      "region_short": "EUR",
+      "region_long": "Europe"
+    }
+  },
+   {
+    "model": "app.Region",
+    "pk": 3,
+    "fields": {
+
+      "region_short": "ASP",
+      "region_long": "North America, Middle America"
+    }
+  }
+]

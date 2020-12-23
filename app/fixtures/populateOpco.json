@@ -1,0 +1,29 @@
+[
+  {
+    "model": "app.Opco",
+    "pk": 1,
+    "fields": {
+      "country": 1,
+      "opco_name": "Demo Opco 1",
+      "opco_size": "Medium"
+    }
+  },
+    {
+    "model": "app.Opco",
+    "pk": 2,
+    "fields": {
+      "country": 1,
+      "opco_name": "Demo Opco 2",
+      "opco_size": "Small"
+    }
+  },
+    {
+    "model": "app.Opco",
+    "pk": 3,
+    "fields": {
+      "country": 2,
+      "opco_name": "Demo Opco 3",
+      "opco_size": "Large"
+    }
+  }
+]

@@ -1,0 +1,210 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+{% extends "layouts/default.html" %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="panel-header bg-primary-gradient" data-background-color="white">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">Risk Assessment</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row row-card-no-pd">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-head-row card-tools-still-right">
+                        <h4 class="card-title">Risk Assessment Form</h4>
+                        <div class="card-tools">
+                            <div class="ml-md-auto py-2 py-md-0">
+
+                            </div>
+                           
+                            </button>
+                        </div>
+                    </div>
+                    <p class="card-category">
+                        Map your impact and likelyhood on the heatmap, and provide additional input if you feel neccesary.</p>
+                </div>
+
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive table-hover table-sales">
+                                <table class="table">
+
+                                    <tr>
+                                          <td>
+                                            <label><b>Assess the following Risk:</b></label>
+                                            <form  action='{% url 'riskassessment' %}' method="post">
+                                                {% csrf_token %}
+                                             {{ riskInfo }}
+                                        </td>
+                                        <td>
+                                            
+                          <td class="text-left">
+                            
+                            <div class="a-p-20">
+                              <div class="a-panel panel-default chart-panel">
+                                  <div class="a-panel-header">
+                                     
+                                  </div>
+                                  <div class="a-panel-body">
+                                      <div id="scatterPlots1"></div>
+                                  </div>
+                              </div>
+                          </div></td>
+                        </tr>
+                        <!--TODO: onderstaand scatterplot wel een goed idee? controleer of er niet een betere visual is om mee te werken
+                        Zou even bellen met het EC met de uitleg wat je precies wilt maken. Misschien hebben ze nog iets liggen of kunnen ze
+                        je de juiste weg op wijzen met deze visual -->
+
+                        <script> 
+                        const scatterOption1 = {
+                          chart: {
+                              renderTo: 'scatterPlots1',
+                              type: 'scatter',
+                              zoomType: 'xy' 
+                                               
+                          },
+                          title: {
+                              text: 'Heatmap'
+                          },
+                          subtitle: {
+                              text: 'Riskassessment on Likelihood and Impact'
+                          },
+
+                         
+                          credits: {
+                              enabled: false
+                          },
+                          exporting: {
+                              enabled: false
+                          },
+                          xAxis: {
+                              title: {
+                                  enabled: true,
+                                  text: 'Impact'
+                              },
+                              labels: {
+                                  style: {
+                                      fontSize: '16px'
+                                  }
+                              },
+                              gridLineWidth: 1,
+                              gridLineColor: '#e7e7e8',
+                              startOnTick: true,
+                              endOnTick: true,
+                              showLastLabel: true,
+                              tickColor: '#e7e7e8'
+                          },
+                          yAxis: {
+                              title: {
+                                  text: 'Likelihood'
+                              },
+                              gridLineColor: '#e7e7e8',
+                              labels: {
+                                  style: {
+                                      fontSize: '15px'
+                                  }
+                              }
+                          },
+                          legend: {
+                              layout: 'horizontal',
+                              align: 'center',
+                              verticalAlign: 'bottom',
+                              x: 5,
+                              y: 5,
+                              floating: false,
+                              backgroundColor: '#FFFFFF',
+                              borderWidth: 0
+                          },
+                          plotOptions: {
+                              scatter: {
+                                  marker: {
+                                      symbol: "circle",
+                                      radius: 5,
+                                      states: {
+                                          hover: {
+                                              enabled: true,
+                                              lineColor: 'rgb(100,100,100)'
+                                          }
+                                      }
+                                  },
+                                  states: {
+                                      hover: {
+                                          marker: {
+                                              enabled: false
+                                          }
+                                      }
+                                  },
+                                  tooltip: {
+                                      headerFormat: '<b>{series.name}</b><br>',
+                                      pointFormat: '{point.x}, {point.y}'
+                                  }
+                              }
+                          },
+                        
+                          series: [{
+                            name: 'Likelihood',
+                            color: 'lightgreen',
+                            data: [[1, 0], [0,5]]
+                       
+                          }, {
+                            name: 'Impact',
+                            color: 'red',
+                            data: [[1, 0],[0,5]]
+                
+                          }]
+                      }
+                      
+                      Highcharts.chart(scatterOption1);
+                      
+                      
+                      </script>
+
+                      
+                
+
+                        <!-- End of the heatmap  -->
+
+                                        </td>
+                                        <tr>
+                                        <td>
+                                            <label><b>Response</b></label>
+                                            {{ riskInput}}
+                                        </td>
+                                    </tr>
+                                    </tr>
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                            <input type="submit" value="Next">
+                                                </div>
+                                                      </form>
+                        </div>
+                        
+
+                    </div>
+                    
+          </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+

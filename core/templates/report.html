@@ -1,0 +1,97 @@
+{% extends "layouts/default.html" %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="panel-header bg-primary-gradient">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+                <h2 class="text-white pb-2 fw-bold">Report</h2>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <div class="col-md-12">
+
+    </div>
+    <div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'DetailedReport')">Details</button>
+  <button class="tablinks" onclick="openCity(event, 'ConsolidatedReport')">Consolidated</button>
+</div>
+
+<!-- Tab content -->
+<div id="DetailedReport" class="tabcontent">
+  <div class="col-md-12">
+       <form method="post">
+             {% csrf_token %}
+     <input type="submit" value="Export">
+       </form>
+            <div class="table-responsive table-hover table-sales">
+                <table class="table">
+                    <tr>
+
+                        <th>OPCO</th>
+                        {% for header in headers %}
+                        <th><b>{{header}}</b></th>
+                        {% endfor %}
+                    </tr>
+                    {% for risk in risks %}
+                    <tr>
+
+                        <td>OPCO DEMO</td>
+                        <td>{{ risk.global_function}}</td>
+                        <td>{{ risk.risk_topic }}</td>
+                        <td>{{ risk.risk_response }}</td>
+                        <td>{{ risk.risk_classification }}</td>
+
+
+                        <td>{{ risk.risk_type }}</td>
+                        <td>{{ risk.impact_classification }}</td>
+                        <td>{{ risk.risk_appetite }}</td>
+
+
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+</div>
+
+<div id="DetailedReport" class="tabcontent">
+  <p>Paris is the capital of France.</p>
+</div>
+</div>
+
+<script>
+
+
+function openCity(evt, reportName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(reportName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+{% endblock content %}

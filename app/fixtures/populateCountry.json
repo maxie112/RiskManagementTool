@@ -1,0 +1,29 @@
+[
+  {
+    "model": "app.Country",
+    "pk": 1,
+    "fields": {
+      "region": 2,
+      "country_code": "FR",
+      "country_long": "France"
+    }
+  },
+   {
+    "model": "app.Country",
+    "pk": 2,
+    "fields": {
+      "region": 3,
+      "country_code": "USA",
+      "country_long": "United States of America"
+    }
+  },
+    {
+    "model": "app.Country",
+    "pk": 3,
+    "fields": {
+      "region": 1 ,
+      "country_code": "RUS",
+      "country_long": "Russia"
+    }
+  }
+]

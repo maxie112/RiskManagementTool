@@ -1,0 +1,163 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+
+{% extends "layouts/default.html" %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="panel-header bg-primary-gradient" data-background-color="white">
+      <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+          <div>
+            <h2 class="text-white pb-2 fw-bold">Risk Form</h2>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row row-card-no-pd">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-head-row card-tools-still-right">
+                <h4 class="card-title">Submit Risks</h4>
+                <div class="card-tools">
+                    <div class="ml-md-auto py-2 py-md-0">
+
+            <a href='{% url 'riskresponse' %}'class="btn btn-secondary btn-round">New Risk Response</a>
+          </div>
+                  <button class="btn btn-icon btn-link btn-primary btn-xs"><span class="fa fa-angle-down"></span></button>
+                  <button class="btn btn-icon btn-link btn-primary btn-xs btn-refresh-card"><span class="fa fa-sync-alt"></span></button>
+                  <button class="btn btn-icon btn-link btn-primary btn-xs"><span class="fa fa-times"></span></button>
+                </div>
+              </div>
+              <p class="card-category">
+              Identify Risk and Response</p>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="table-responsive table-hover table-sales">
+                    <table class="table">
+                        <b>New Risks</b>
+                        <tr >
+
+                        {% for header in headers %}
+                        <th><b>{{header}}</b></th>
+                        {% endfor %}
+                    </tr>
+                    {% for newrisk in newrisks %}
+                    <tr>
+                        <td>{{ newrisk.global_function}}</td>
+                        <td>{{ newrisk.risk_topic }}</td>
+                        <td>{{ newrisk.risk_type }}</td>
+                        <td>{{ newrisk.status }}</td>
+
+
+
+                    </tr>
+                    {% endfor %}
+                    </table>
+                  </div>
+
+
+                  <div class="table-responsive table-hover table-sales">
+                    <table class="table">
+                        <b>Risk Status</b>
+                        <tr>
+
+                        {% for header in headers %}
+                        <th><b>{{header}}</b></th>
+                        {% endfor %}
+                    </tr>
+                    {% for risk in risks %}
+                    <tr>
+                        <td>{{ risk.global_function}}</td>
+                        <td>{{ risk.risk_topic }}</td>
+                        <td>{{ risk.risk_type }}</td>
+                        <td>{{ risk.status }}</td>
+
+
+
+                    </tr>
+                    {% endfor %}
+                    </table>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                 <figure class="highcharts-figure">
+    <div id="container"></div>
+</figure>
+
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <script>
+    Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: 0,
+        plotShadow: false
+    },
+    title: {
+        text: 'Risk Reponse<br>Satus<br>',
+        align: 'center',
+        verticalAlign: 'middle',
+        y: 60
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            dataLabels: {
+                enabled: true,
+                distance: -50,
+                style: {
+                    fontWeight: 'bold',
+                    color: 'white'
+                }
+            },
+            startAngle: -90,
+            endAngle: 90,
+            center: ['50%', '75%'],
+            size: '110%'
+        }
+    },
+    series: [{
+        type: 'pie',
+        name: 'Risk Response Status',
+        innerSize: '50%',
+        data: [
+            ['Pending',10],
+            ['Rejected', 5],
+            ['Accepted', 85],
+
+        ]
+    }]
+});
+
+
+    </script>
+
+{% endblock content %}

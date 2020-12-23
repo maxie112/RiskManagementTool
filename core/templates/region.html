@@ -1,0 +1,356 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/sankey.js"></script>
+<script src="https://code.highcharts.com/modules/dependency-wheel.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+{% extends "layouts/default.html" %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="panel-header bg-primary-gradient">
+      <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+          <div>
+            <h2 class="text-white pb-2 fw-bold">Risk Management - Region</h2>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-card-no-pd">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-head-row card-tools-still-right">
+                <h4 class="card-title">Region Europe</h4>
+                <div class="card-tools">
+                  <button class="btn btn-icon btn-link btn-primary btn-xs"><span class="fa fa-angle-down"></span></button>
+                  <button class="btn btn-icon btn-link btn-primary btn-xs btn-refresh-card"><span class="fa fa-sync-alt"></span></button>
+                  <button class="btn btn-icon btn-link btn-primary btn-xs"><span class="fa fa-times"></span></button>
+                </div>
+              </div>
+              <p class="card-category">
+              Region based risks</p>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="table-responsive table-hover table-sales">
+                    <table class="table">
+                      <tbody>
+                        <figure class="highcharts-figure">
+    <div id="container"></div>
+
+</figure>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mapcontainer">
+                    <div class="card-header">
+              <div class="card-title">Top 3 Shared Risks</div>
+            </div>
+            <div class="card-body pb-0">
+              <div class="d-flex">
+                <div class="avatar">
+                  <img src="/static/assets/img/logoproduct.svg" alt="..." class="avatar-img rounded-circle">
+                </div>
+                <div class="flex-1 pt-1 ml-2">
+                  <h6 class="fw-bold mb-1">Operating Risk</h6>
+                  <small class="text-muted">Physical User Access Management</small>
+                </div>
+                <div class="d-flex ml-auto align-items-center">
+                  <h3 class="text-info fw-bold">Shared with 11</h3>
+                </div>
+              </div>
+              <div class="separator-dashed"></div>
+              <div class="d-flex">
+                <div class="avatar">
+                  <img src="/static/assets/img/logoproduct.svg" alt="..." class="avatar-img rounded-circle">
+                </div>
+                <div class="flex-1 pt-1 ml-2">
+                  <h6 class="fw-bold mb-1">Brand Reputation</h6>
+                  <small class="text-muted">Conflicting Images</small>
+                </div>
+                <div class="d-flex ml-auto align-items-center">
+                  <h3 class="text-info fw-bold">Shared with 7</h3>
+                </div>
+              </div>
+              <div class="separator-dashed"></div>
+              <div class="d-flex">
+                <div class="avatar">
+                  <img src="/static/assets/img/logoproduct3.svg" alt="..." class="avatar-img rounded-circle">
+                </div>
+                <div class="flex-1 pt-1 ml-2">
+                  <h6 class="fw-bold mb-1">Compliancy Risk</h6>
+                  <small class="text-muted">Updated ITGC Regulations</small>
+                </div>
+                <div class="d-flex ml-auto align-items-center">
+                  <h3 class="text-info fw-bold">Shared with 6</h3>
+                </div>
+              </div>
+              <div class="separator-dashed"></div>
+              <div class="pull-in">
+                <canvas id="topProductsChart"></canvas>
+              </div>
+            </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Most frequent risks</div>
+            </div>
+            <div class="card-body pb-0">
+              <div class="d-flex">
+                <div class="avatar">
+                  <img src="/static/assets/img/logoproduct3.svg" alt="..." class="avatar-img rounded-circle">
+                </div>
+                <div class="flex-1 pt-1 ml-2">
+                  <h6 class="fw-bold mb-1">GCA_01</h6>
+                  <small class="text-muted">Strategic</small>
+                </div>
+                <div class="d-flex ml-auto align-items-center">
+                  <h3 class="text-info fw-bold">14</h3>
+                </div>
+              </div>
+              <div class="separator-dashed"></div>
+              <div class="d-flex">
+                <div class="avatar">
+                  <img src="/static/assets/img/logoproduct3.svg" alt="..." class="avatar-img rounded-circle">
+                </div>
+                <div class="flex-1 pt-1 ml-2">
+                  <h6 class="fw-bold mb-1">GCA_02</h6>
+                  <small class="text-muted">Compliance</small>
+                </div>
+                <div class="d-flex ml-auto align-items-center">
+                  <h3 class="text-info fw-bold">12</h3>
+                </div>
+              </div>
+              <div class="separator-dashed"></div>
+              <div class="d-flex">
+                <div class="avatar">
+                  <img src="/static/assets/img/logoproduct3.svg" alt="..." class="avatar-img rounded-circle">
+                </div>
+                <div class="flex-1 pt-1 ml-2">
+                  <h6 class="fw-bold mb-1">GC_02</h6>
+                  <small class="text-muted">Strategic</small>
+                </div>
+                <div class="d-flex ml-auto align-items-center">
+                  <h3 class="text-info fw-bold">9</h3>
+                </div>
+              </div>
+                <div class="separator-dashed"></div>
+              <div class="d-flex">
+                <div class="avatar">
+                  <img src="/static/assets/img/logoproduct3.svg" alt="..." class="avatar-img rounded-circle">
+                </div>
+                <div class="flex-1 pt-1 ml-2">
+                  <h6 class="fw-bold mb-1">GIS_02</h6>
+                  <small class="text-muted">Operational</small>
+                </div>
+                <div class="d-flex ml-auto align-items-center">
+                  <h3 class="text-info fw-bold">9</h3>
+                </div>
+              </div>
+                <div class="separator-dashed"></div>
+              <div class="d-flex">
+                <div class="avatar">
+                  <img src="/static/assets/img/logoproduct3.svg" alt="..." class="avatar-img rounded-circle">
+                </div>
+                <div class="flex-1 pt-1 ml-2">
+                  <h6 class="fw-bold mb-1">GT_01</h6>
+                  <small class="text-muted">Compliance</small>
+                </div>
+                <div class="d-flex ml-auto align-items-center">
+                  <h3 class="text-info fw-bold">8</h3>
+                </div>
+              </div>
+              <div class="separator-dashed"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title fw-mediumbold">Add To Region Risks</div>
+              <div class="card-list">
+                <div class="item-list">
+                  <div class="info-user ml-3">
+                    <div class="username">GSC_06 </div>
+                    <div class="status">Irresponsible Communication</div>
+                  </div> <form method="post"  action='{% url 'pushriskresponse' %}'>
+                    {% csrf_token %}
+
+
+                  <button class="btn btn-icon btn-primary btn-round btn-xs">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                  </form>
+                </div>
+                <div class="item-list">
+                  <div class="info-user ml-3">
+                    <div class="username">GIS_02</div>
+                    <div class="status">Non Compliance to IT and Sec..</div>
+                  </div>
+                  <button class="btn btn-icon btn-primary btn-round btn-xs">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+                <div class="item-list">
+                  <div class="info-user ml-3">
+                    <div class="username">GLA_04</div>
+                    <div class="status">Fraud</div>
+                  </div>
+                  <button class="btn btn-icon btn-primary btn-round btn-xs">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+                <div class="item-list">
+                  <div class="info-user ml-3">
+                    <div class="username">HR_02</div>
+                    <div class="status">Human Rights</div>
+                  </div>
+                  <button class="btn btn-icon btn-primary btn-round btn-xs">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+                <div class="item-list">
+                  <div class="info-user ml-3">
+                    <div class="username">GLA_05</div>
+                    <div class="status">Irresponsible Communication</div>
+                  </div>
+                  <button class="btn btn-icon btn-primary btn-round btn-xs">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+                <div class="item-list">
+                  <div class="info-user ml-3">
+                    <div class="username">GA&R_01</div>
+                    <div class="status">Financial Reporting Non-Compliance</div>
+                  </div>
+                  <button class="btn btn-icon btn-primary btn-round btn-xs">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-primary bg-primary-gradient">
+            <div class="card-body">
+              <h4 class="mt-3 b-b1 pb-2 mb-4 fw-bold">Present OPCO's</h4>
+              <h1 class="mb-4 fw-bold">12</h1>
+              <h4 class="mt-3 b-b1 pb-2 mb-5 fw-bold">Risk Indicator</h4>
+              <div id="activeUsersChart"></div>
+              <h4 class="mt-5 pb-3 mb-0 fw-bold">Top Risk Types</h4>
+              <ul class="list-unstyled">
+                <li class="d-flex justify-content-between pb-1 pt-1"><small>Strategic</small> <span>7</span></li>
+                <li class="d-flex justify-content-between pb-1 pt-1"><small>Compliance</small> <span>5</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+<script>
+Highcharts.chart('container', {
+
+    title: {
+        text: 'Region Shared Risks'
+    },
+
+    accessibility: {
+        point: {
+            valueDescriptionFormat: '{index}. From {point.from} to {point.to}: {point.weight}.'
+        }
+    },
+
+    series: [{
+        keys: ['from', 'to', 'weight'],
+        data: [
+            ['OPCO_1', 'OPCO_5', 5],
+            ['OPCO_1', 'OPCO_6', 1],
+            ['OPCO_1', 'OPCO_7', 1],
+            ['OPCO_1', 'OPCO_8', 1],
+            ['OPCO_2', 'OPCO_5', 1],
+            ['OPCO_2', 'OPCO_1', 5],
+            ['OPCO_2', 'OPCO_8', 1],
+            ['OPCO_3', 'OPCO_5', 1],
+            ['OPCO_3', 'OPCO_6', 1],
+            ['OPCO_3', 'OPCO_7', 5],
+            ['OPCO_3', 'OPCO_8', 1],
+            ['OPCO_4', 'OPCO_5', 1],
+            ['OPCO_4', 'OPCO_1', 1],
+            ['OPCO_4', 'OPCO_7', 1],
+            ['OPCO_4', 'OPCO_8', 5],
+            ['OPCO_5', 'OPCO_10', 2],
+            ['OPCO_5', 'OPCO_11', 1],
+            ['OPCO_5', 'OPCO_1', 1],
+            ['OPCO_5', 'OPCO_9', 3],
+            ['OPCO_6', 'OPCO_10', 1],
+            ['OPCO_6', 'OPCO_11', 3],
+            ['OPCO_6', 'OPCO_12', 3],
+            ['OPCO_6', 'OPCO_1', 3],
+            ['OPCO_6', 'OPCO_9', 1],
+            ['OPCO_7', 'OPCO_1', 1],
+            ['OPCO_7', 'OPCO_11', 3],
+            ['OPCO_7', 'OPCO_9', 1],
+            ['OPCO_8', 'OPCO_10', 1],
+            ['OPCO_8', 'OPCO_1', 1],
+            ['OPCO_8', 'OPCO_12', 2],
+            ['OPCO_8', 'OPCO_9', 7],
+            ['OPCO_9', 'OPCO_4', 5],
+            ['OPCO_9', 'OPCO_1', 1],
+            ['OPCO_9', 'OPCO_9', 3],
+            ['OPCO_10', 'OPCO_6', 5],
+            ['OPCO_10', 'OPCO_4', 1],
+            ['OPCO_10', 'OPCO_1', 3],
+            ['OPCO_11', 'OPCO_1', 5],
+            ['OPCO_11', 'OPCO_4', 1],
+            ['OPCO_11', 'OPCO_10', 3],
+            ['OPCO_12', 'OPCO_4', 5],
+            ['OPCO_12', 'OPCO_6', 1],
+            ['OPCO_12', 'OPCO_1', 3],
+            ['OPCO_13', 'OPCO_4', 5],
+            ['OPCO_13', 'OPCO_10', 1],
+            ['OPCO_13', 'OPCO_6', 3],
+            ['OPCO_13', 'OPCO_1', 1]
+        ],
+        type: 'dependencywheel',
+        name: 'Region Shared Risks',
+        dataLabels: {
+            color: '#333',
+            textPath: {
+                enabled: true,
+                attributes: {
+                    dy: 5
+                }
+            },
+            distance: 10
+        },
+        size: '95%'
+    }]
+});
+
+</script>
+
+
+</script>
+{% endblock content %}
